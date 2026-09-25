@@ -1,139 +1,56 @@
-# Football Player Wage Intelligence & Valuation
+# ⚽ Football Player Wage Prediction
 
-A DS + DA project that studies football player wages, predicts wage from player characteristics, explains model behavior, and provides analytics outputs for Power BI.
+An end-to-end **Data Science and Machine Learning project** that analyzes football player wages and builds regression models to estimate player wages from available player characteristics.
 
-## Project objective
+The project covers the complete machine learning workflow:
 
-Answer two related questions:
+**Data Cleaning → Exploratory Data Analysis → Feature Engineering → Model Training → Cross-Validation → Model Selection → Final Test Evaluation → Model Explainability → Prediction Analysis**
 
-1. Which player attributes are associated with higher wages in the supplied dataset?
-2. How does each player's observed wage compare with the model's estimated wage given the available features?
+---
 
-## Dataset
+## 🎯 Project Objective
 
-The project uses the supplied `SalaryPrediction.csv`.
+The main objective is to investigate the factors associated with football player wages and build a machine learning model capable of estimating wage from player-level attributes.
 
-Original fields:
-- Wage
-- Age
-- Club
-- League
-- Nation
-- Position
-- Apps
-- Caps
+The project focuses on two questions:
 
-The source dataset does not contain player names. The project therefore creates a synthetic `Player_ID` after cleaning for record-level reporting. This identifier is not used as a model feature.
+1. **Which player characteristics are associated with differences in wages?**
+2. **How accurately can machine learning models estimate player wages from the available data?**
 
-Cleaning:
-- Wage strings are converted to numeric.
-- The supplied source spelling `Midfilder` is normalized to `Midfielder`.
-- Exact duplicate rows are removed.
-- Three interpretable features are created:
-  - Caps_per_App
-  - Apps_per_Year
-  - International_Exposure
+> This project focuses on prediction and association, not causal inference.
 
-## Machine learning
+---
 
-Models:
-- Median baseline
-- Linear Regression
-- Random Forest Regressor
-- Gradient Boosting Regressor
+## 📊 Dataset
 
-Categorical variables are encoded with OneHotEncoder inside a Scikit-learn pipeline.
+The project uses the supplied `SalaryPrediction.csv` dataset.
 
-The model is selected using test-set RMSE, with MAE as a tiebreaker.
+### Original Features
 
-Metrics:
-- MAE
-- RMSE
-- R²
+- `Wage`
+- `Age`
+- `Club`
+- `League`
+- `Nation`
+- `Position`
+- `Apps`
+- `Caps`
 
-Explainability:
-- Permutation importance on the original human-readable features.
+The source dataset does **not** contain player names.
 
-## Data analytics
+For record-level prediction analysis, the project creates a synthetic `Player_ID`. This identifier is used only for tracking/reporting and is **never used as a machine-learning feature**.
 
-SQL:
-- Average wage by position/league
-- Top-paid players
-- Window-function ranking within leagues
-- Age-band analysis
-- International exposure analysis
-- Appearance-band analysis
+---
 
-Power BI:
-- Wage overview
-- Player valuation
-- Model analytics
+## 🧹 Data Preparation
 
-See `powerbi/POWER_BI_GUIDE.md`.
+The preprocessing pipeline performs the following operations:
 
-## Run locally
+### Wage Cleaning
 
-### 1. Create and activate an environment
+The original wage values are stored as strings containing commas.
 
-Windows:
+Example:
 
-```bash
-python -m venv .venv
-.venv\Scripts\activate
-```
-
-macOS/Linux:
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-```
-
-### 2. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Train the project
-
-```bash
-python train.py
-```
-
-This creates:
-- `artifacts/model_metrics.csv`
-- `artifacts/best_model.joblib`
-- `artifacts/test_predictions.csv`
-- `artifacts/permutation_importance.csv`
-- `artifacts/model_metadata.json`
-
-### 4. Build the SQLite database
-
-```bash
-python sql/build_sqlite.py
-```
-
-Database:
-`artifacts/football_wages.db`
-
-### 5. Launch the dashboard
-
-```bash
-streamlit run app.py
-```
-
-## Resume-safe project description
-
-**Football Player Wage Intelligence & Valuation**  
-`Python | SQL | Power BI | Scikit-learn | Pandas | Machine Learning`
-
-- Built an end-to-end analytics and regression pipeline to analyze football player wages using SQL, Python and engineered player-experience features.
-- Compared Linear Regression, Random Forest and Gradient Boosting using MAE, RMSE and R², selecting the strongest model through held-out evaluation.
-- Developed model-relative wage benchmarking and an interactive analytics dashboard covering league, club, position and player-level wage patterns.
-
-Only use the numbers from `artifacts/model_metrics.csv` after running the project yourself.
-
-## Important interview note
-
-This project demonstrates association and prediction, not causal inference. A player having a high feature-importance score or a wage above the model estimate does not prove that the feature caused the wage or that the player is objectively over/underpaid.
+```text
+46,427,000
