@@ -1,0 +1,10 @@
+Football Player Wage Intelligence — Verified Run
+Raw rows: 3907
+Exact duplicates removed: 65
+Clean rows modeled: 3842
+
+            Model          MAE         RMSE        R2
+  Median Baseline 1.393739e+06 3.104283e+06 -0.146642
+Linear Regression 9.157252e+05 1.888930e+06  0.575442
+    Random Forest 8.270190e+05 1.902568e+06  0.569289
+Gradient Boosting 7.538258e+05 1.858882e+06  0.588842

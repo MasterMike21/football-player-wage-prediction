@@ -1,0 +1,32 @@
+{
+  "best_model": "Gradient Boosting",
+  "selection_method": "5-fold cross-validation on training data using mean RMSE",
+  "final_evaluation": "single evaluation on untouched 20% test set",
+  "test_size": 0.2,
+  "random_state": 42,
+  "cv_folds": 5,
+  "target": "Wage",
+  "identifier_columns": [
+    "Player_ID"
+  ],
+  "note": "The source dataset has no player-name field. Player_ID is synthetic and used only for record identification.",
+  "categorical_features": [
+    "Club",
+    "League",
+    "Nation",
+    "Position"
+  ],
+  "engineered_features": [
+    "Caps_per_App",
+    "Apps_per_Year",
+    "International_Exposure"
+  ],
+  "candidate_models": [
+    "Linear Regression",
+    "Random Forest",
+    "Gradient Boosting"
+  ],
+  "raw_dataset_rows": 3907,
+  "exact_duplicates_removed": 65,
+  "clean_dataset_rows": 3842
+}
